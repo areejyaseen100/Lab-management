@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نتائج الفحوصات - معمل الجمعية الطبية</title>
+    <link rel="stylesheet" href="css/results.css">
+</head>
+<body>
+    <div class="container">
+        <!-- شريط العنوان مع زر الرجوع -->
+        <div class="header-bar">
+            <button type="button" id="backBtn" class="btn-back">🔙 رجوع</button>
+            <h1>📋 نتائج الفحوصات</h1>
+            <div style="width: 80px;"></div>
+        </div>
+
+        <!-- إحصائيات سريعة -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-details">
+                    <span class="stat-label">إجمالي المرضى اليوم</span>
+                    <span class="stat-value" id="totalPatients">0</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-details">
+                    <span class="stat-label">مكتمل</span>
+                    <span class="stat-value" id="completedCount">0</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⏳</div>
+                <div class="stat-details">
+                    <span class="stat-label">قيد الانتظار</span>
+                    <span class="stat-value" id="pendingCount">0</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">💰</div>
+                <div class="stat-details">
+                    <span class="stat-label">إجمالي الإيرادات</span>
+                    <span class="stat-value" id="totalRevenue">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- شريط البحث والفلترة -->
+        <div class="filter-section">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 ابحث باسم المريض..." autocomplete="off">
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">الكل</button>
+                <button class="filter-btn" data-filter="pending">قيد الانتظار</button>
+                <button class="filter-btn" data-filter="completed">مكتمل</button>
+            </div>
+        </div>
+
+        <!-- قائمة مرضى اليوم (مرتبة تصاعدياً حسب الرقم اليومي) -->
+        <div class="patients-list" id="patientsList">
+            <!-- هنا تظهر بطاقات المرضى -->
+        </div>
+    </div>
+
+    <script src="scripts/results.js"></script>
+</body>
+</html>

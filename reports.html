@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التقارير - معمل الجمعية الطبية</title>
+    <link rel="stylesheet" href="css/reports.css">
+    <!-- تحميل المكتبات من مصادر بديلة -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- شريط العنوان مع زر الرجوع -->
+        <div class="header-bar">
+            <button type="button" id="backBtn" class="btn-back">🔙 رجوع</button>
+            <h1>📊 التقارير</h1>
+            <div style="width: 80px;"></div>
+        </div>
+
+        <!-- اختيار نوع التقرير والفترة -->
+        <div class="report-controls">
+            <div class="report-type">
+                <label>نوع التقرير</label>
+                <select id="reportType">
+                    <option value="daily">تقرير يومي</option>
+                    <option value="monthly">تقرير شهري</option>
+                    <option value="yearly">تقرير سنوي</option>
+                    <option value="custom">فترة مخصصة</option>
+                </select>
+            </div>
+
+            <div class="date-range" id="dateRange">
+                <div class="date-input">
+                    <label>من تاريخ</label>
+                    <input type="date" id="startDate">
+                </div>
+                <div class="date-input">
+                    <label>إلى تاريخ</label>
+                    <input type="date" id="endDate">
+                </div>
+            </div>
+
+            <button id="generateReportBtn" class="btn-generate">عرض التقرير</button>
+        </div>
+
+        <!-- ملخص سريع -->
+        <div class="summary-cards" id="summaryCards">
+            <!-- تتحمل ديناميكياً -->
+        </div>
+
+        <!-- تفاصيل التقرير -->
+        <div class="details-section">
+            <h3>📋 تفاصيل التقرير</h3>
+            <div class="table-container" id="detailsTable">
+                <!-- هنا يظهر الجدول -->
+            </div>
+        </div>
+
+        <!-- أزرار التصدير -->
+        <div class="export-buttons">
+            <button class="btn-export" id="exportPdfBtn">📥 تصدير PDF</button>
+            <button class="btn-export" id="exportExcelBtn">📥 تصدير Excel</button>
+            <button class="btn-print" id="printReportBtn">🖨️ طباعة</button>
+        </div>
+    </div>
+
+    <script src="scripts/reports.js"></script>
+</body>
+</html>

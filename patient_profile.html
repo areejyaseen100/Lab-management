@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملف المريض - معمل الجمعية الطبية</title>
+    <link rel="stylesheet" href="css/patient_profile.css">
+</head>
+<body>
+    <div class="container">
+        <!-- شريط العنوان مع زر الرجوع -->
+        <div class="header-bar">
+            <button type="button" id="backBtn" class="btn-back">🔙 رجوع</button>
+            <h1>📋 ملف المريض</h1>
+            <div style="width: 80px;"></div>
+        </div>
+
+        <!-- معلومات المريض الأساسية -->
+        <div class="patient-info-card" id="patientInfo">
+            <!-- تتحمل ديناميكياً من JavaScript -->
+        </div>
+
+        <!-- خيارات الإجراءات -->
+        <div class="actions-grid">
+            <div class="action-card" id="addTestsBtn">
+                <div class="action-icon blue">➕</div>
+                <div class="action-content">
+                    <span class="action-label">إضافة فحوصات</span>
+                    <span class="action-desc">إضافة فحوصات جديدة للمريض</span>
+                </div>
+            </div>
+
+            <div class="action-card" id="viewResultsBtn">
+                <div class="action-icon green">📋</div>
+                <div class="action-content">
+                    <span class="action-label">عرض النتائج</span>
+                    <span class="action-desc">عرض نتائج الفحوصات السابقة</span>
+                </div>
+            </div>
+
+            <div class="action-card" id="editDataBtn">
+                <div class="action-icon orange">✏️</div>
+                <div class="action-content">
+                    <span class="action-label">تعديل البيانات</span>
+                    <span class="action-desc">تعديل معلومات المريض</span>
+                </div>
+            </div>
+
+            <div class="action-card" id="printResultsBtn">
+                <div class="action-icon purple">🖨️</div>
+                <div class="action-content">
+                    <span class="action-label">طباعة النتائج</span>
+                    <span class="action-desc">طباعة تقرير الفحوصات</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- سجل الزيارات السابقة -->
+        <h2 class="section-title">سجل الزيارات</h2>
+        <div class="visits-history" id="visitsHistory">
+            <!-- تتحمل ديناميكياً من JavaScript -->
+        </div>
+    </div>
+
+    <script src="scripts/patient_profile.js"></script>
+</body>
+</html>

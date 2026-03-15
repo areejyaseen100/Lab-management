@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختيار الفحوصات - معمل الجمعية الطبية</title>
+    <link rel="stylesheet" href="css/choose_tests.css">
+</head>
+<body>
+    <div class="container">
+        <!-- شريط العنوان مع زر الرجوع -->
+        <div class="header-bar">
+            <button type="button" id="backBtn" class="btn-back">🔙 رجوع</button>
+            <h1>🧪 اختيار الفحوصات</h1>
+            <div style="width: 80px;"></div>
+        </div>
+
+        <!-- معلومات المريض (سطر واحد) -->
+        <div id="patientInfo" class="patient-info"></div>
+
+        <!-- المحتوى الرئيسي - قسمين -->
+        <div class="main-content">
+            <!-- الجزء الأيسر - شريط البحث وأسماء الأقسام -->
+            <div class="left-section">
+                <!-- شريط البحث التنبؤي -->
+                <div class="search-section">
+                    <label>🔍 ابحث عن فحص</label>
+                    <input type="text" id="searchInput" placeholder="اكتب اسم الفحص..." autocomplete="off">
+                    <div id="searchSuggestions" class="suggestions-box"></div>
+                </div>
+
+                <!-- أسماء الأقسام كأزرار -->
+                <h2 class="section-title">📋 أقسام الفحوصات</h2>
+                <div class="categories-container" id="categoriesContainer"></div>
+
+                <!-- الفحوصات داخل كل قسم (تظهر فقط عند الضغط على القسم) -->
+                <div id="categoryTestsSection" class="category-tests-section" style="display: none;">
+                    <div class="category-tests-header">
+                        <h3 id="selectedCategoryTitle"></h3>
+                    </div>
+                    <div id="categoryTestsList" class="category-tests-list"></div>
+                </div>
+            </div>
+
+            <!-- الجزء الأيمن - الفحوصات المختارة (يظهر فقط عند اختيار فحوصات) -->
+            <div class="right-section" id="selectedTestsSection" style="display: none;">
+                <div class="selected-header">
+                    <h2>✅ الفحوصات المختارة</h2>
+                    <button type="button" id="clearSelectedBtn" class="btn-clear-small">🗑️</button>
+                </div>
+                
+                <div id="selectedTestsList" class="selected-list"></div>
+                
+                <div class="total-section">
+                    <span>الإجمالي:</span>
+                    <span class="total-amount">
+                        <span id="totalPrice">0</span> ج.م
+                    </span>
+                </div>
+
+                <button type="button" id="confirmTestsBtn" class="btn-confirm">✅ تأكيد الفحوصات</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/choose_tests.js"></script>
+</body>
+</html>

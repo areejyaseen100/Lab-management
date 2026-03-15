@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الفحوصات - معمل الجمعية الطبية</title>
+    <link rel="stylesheet" href="css/manage_tests.css">
+</head>
+<body>
+    <div class="full-page">
+        <div class="manage-tests-container">
+            <div class="header-bar">
+                <button type="button" id="backBtn" class="btn-back">🔙 رجوع</button>
+                <h1>🧪 إدارة الفحوصات</h1>
+                <div style="width: 80px;"></div>
+            </div>
+
+            <!-- تبويبات: الأقسام - الفحوصات الرئيسية - البروفايلات -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="categories">📂 الأقسام</button>
+                <button class="tab-btn" data-tab="investigations">🔬 Main Investigation</button>
+                <button class="tab-btn" data-tab="profiles">📋 Profile Investigation</button>
+            </div>
+
+            <!-- ===== تبويب الأقسام ===== -->
+            <div id="categoriesTab" class="tab-content active">
+                <div class="section-header">
+                    <h2>📂 أقسام المختبر</h2>
+                    <button id="addCategoryBtn" class="btn-add">➕ إضافة قسم جديد</button>
+                </div>
+                <div class="categories-list" id="categoriesList">
+                    <!-- هنا تظهر الأقسام -->
+                </div>
+            </div>
+
+            <!-- ===== تبويب الفحوصات الرئيسية ===== -->
+            <div id="investigationsTab" class="tab-content">
+                <div class="section-header">
+                    <h2>🔬 Main Investigation</h2>
+                    <button id="addInvestigationBtn" class="btn-add">➕ إضافة فحص رئيسي</button>
+                </div>
+
+                <!-- فلتر حسب القسم -->
+                <div class="filter-section">
+                    <label for="filterCategory">تصفية حسب القسم:</label>
+                    <select id="filterCategory" class="filter-select">
+                        <option value="all">جميع الأقسام</option>
+                    </select>
+                </div>
+
+                <div class="investigations-list" id="investigationsList">
+                    <!-- هنا تظهر الفحوصات الرئيسية -->
+                </div>
+            </div>
+
+            <!-- ===== تبويب البروفايلات ===== -->
+            <div id="profilesTab" class="tab-content">
+                <div class="section-header">
+                    <h2>📋 Profile Investigation</h2>
+                    <button id="addProfileBtn" class="btn-add">➕ إضافة بروفايل جديد</button>
+                </div>
+
+                <div class="profiles-list" id="profilesList">
+                    <!-- هنا تظهر البروفايلات -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة إضافة/تعديل قسم -->
+    <div id="categoryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="categoryModalTitle">➕ إضافة قسم جديد</h3>
+                <button class="modal-close" onclick="closeCategoryModal()">&times;</button>
+            </div>
+            <form id="categoryForm">
+                <input type="hidden" id="categoryId">
+                <div class="form-group">
+                    <label for="categoryName">اسم القسم <span class="required">*</span></label>
+                    <input type="text" id="categoryName" required>
+                </div>
+                <div class="form-group">
+                    <label for="categoryDescription">وصف القسم</label>
+                    <textarea id="categoryDescription" rows="3"></textarea>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="btn-save">💾 حفظ</button>
+                    <button type="button" class="btn-cancel" onclick="closeCategoryModal()">إلغاء</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- نافذة إضافة/تعديل فحص رئيسي -->
+    <div id="investigationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="investigationModalTitle">➕ إضافة فحص رئيسي</h3>
+                <button class="modal-close" onclick="closeInvestigationModal()">&times;</button>
+            </div>
+            <form id="investigationForm">
+                <input type="hidden" id="investigationId">
+                
+                <div class="form-group">
+                    <label for="investigationCategory">القسم <span class="required">*</span></label>
+                    <select id="investigationCategory" required>
+                        <option value="">-- اختر القسم --</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="investigationName">اسم الفحص <span class="required">*</span></label>
+                    <input type="text" id="investigationName" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="investigationPrice">السعر <span class="required">*</span></label>
+                        <input type="number" id="investigationPrice" required min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="investigationUnit">الوحدة</label>
+                        <input type="text" id="investigationUnit" placeholder="مثال: mg/dL">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="investigationNormalRange">النورمال رينج</label>
+                    <input type="text" id="investigationNormalRange" placeholder="مثال: 4.5-11.0">
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-save">💾 حفظ</button>
+                    <button type="button" class="btn-cancel" onclick="closeInvestigationModal()">إلغاء</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- نافذة إضافة/تعديل بروفايل -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h3 id="profileModalTitle">➕ إضافة بروفايل جديد</h3>
+                <button class="modal-close" onclick="closeProfileModal()">&times;</button>
+            </div>
+            <form id="profileForm">
+                <input type="hidden" id="profileId">
+
+                <div class="form-group">
+                    <label for="profileCategory">القسم <span class="required">*</span></label>
+                    <select id="profileCategory" required>
+                        <option value="">-- اختر القسم --</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="profileName">اسم البروفايل <span class="required">*</span></label>
+                    <input type="text" id="profileName" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="profilePrice">السعر الإجمالي <span class="required">*</span></label>
+                        <input type="number" id="profilePrice" required min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>الفحوصات المضمنة في البروفايل</label>
+                    <div class="profile-tests-selection" id="profileTestsSelection">
+                        <!-- هنا تظهر الفحوصات المتاحة للاختيار -->
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-save">💾 حفظ</button>
+                    <button type="button" class="btn-cancel" onclick="closeProfileModal()">إلغاء</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- نافذة عرض تفاصيل البروفايل -->
+    <div id="profileDetailsModal" class="modal">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h3 id="profileDetailsTitle">📋 تفاصيل البروفايل</h3>
+                <button class="modal-close" onclick="closeProfileDetailsModal()">&times;</button>
+            </div>
+            <div id="profileDetailsContent" class="profile-details-content">
+                <!-- هنا تظهر تفاصيل البروفايل -->
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/manage_tests.js"></script>
+</body>
+</html>

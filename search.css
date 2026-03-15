@@ -1,0 +1,407 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0B3B5C, #1B6B8F);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    width: 100%;
+    max-width: 1000px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== شريط العنوان ===== */
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e0e0e0;
+    flex-shrink: 0;
+}
+
+.header-bar h1 {
+    color: #1976D2;
+    font-size: 24px;
+    margin: 0;
+}
+
+.btn-back {
+    padding: 8px 16px;
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-back:hover {
+    background: #5a6268;
+}
+
+/* ===== شريط البحث التنبؤي - ثابت في الأعلى ===== */
+.search-section {
+    position: relative;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.search-section input {
+    flex: 1;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.search-section input:focus {
+    outline: none;
+    border-color: #1976D2;
+}
+
+.btn-search {
+    padding: 15px 30px;
+    background: #1976D2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-search:hover {
+    background: #1565C0;
+}
+
+.suggestions-box {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 100px;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.suggestions-box.show {
+    display: block;
+}
+
+.suggestion-item {
+    padding: 12px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.2s;
+}
+
+.suggestion-item:hover {
+    background: #f5f5f5;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-name {
+    font-weight: 500;
+    color: #1976D2;
+    font-size: 14px;
+}
+
+.suggestion-id {
+    font-size: 12px;
+    color: #666;
+    margin-top: 2px;
+}
+
+/* ===== نتائج البحث - تملأ باقي الصفحة ===== */
+.search-results {
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+
+.patient-result-card {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+}
+
+.patient-result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #1976D2;
+}
+
+.patient-result-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1976D2;
+}
+
+.patient-result-id {
+    background: #e3f2fd;
+    color: #1976D2;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.patient-result-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-label {
+    font-size: 18px;
+    font-weight: 800;
+    color: #1976D2;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.detail-value {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    padding-right: 10px;
+}
+
+/* ===== فلتر التاريخ ===== */
+.date-filter-section {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #e0e0e0;
+}
+
+.date-filter-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1976D2;
+    margin-bottom: 15px;
+}
+
+.date-filter-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.date-input {
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    flex: 1;
+    min-width: 150px;
+}
+
+.date-input:focus {
+    outline: none;
+    border-color: #1976D2;
+}
+
+.date-separator {
+    color: #666;
+    font-weight: 500;
+}
+
+.btn-filter {
+    padding: 10px 20px;
+    background: #1976D2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-filter:hover {
+    background: #1565C0;
+}
+
+.btn-filter-clear {
+    padding: 10px 20px;
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-filter-clear:hover {
+    background: #5a6268;
+}
+
+/* ===== سجل الزيارات ===== */
+.visits-section {
+    margin-top: 20px;
+}
+
+.visits-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1976D2;
+    margin-bottom: 15px;
+}
+
+.visits-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.visit-card {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+}
+
+.visit-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.visit-date {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1976D2;
+}
+
+.visit-daily-id {
+    background: #e3f2fd;
+    color: #1976D2;
+    padding: 3px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+}
+
+.visit-status {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status-completed {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-pending {
+    background: #fff3e0;
+    color: #ed6c02;
+}
+
+.visit-tests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.visit-test-badge {
+    background: #e3f2fd;
+    color: #1976D2;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.visit-amount {
+    font-weight: 600;
+    color: #2e7d32;
+    font-size: 16px;
+    text-align: left;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #e0e0e0;
+}
+
+.visit-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.btn-view {
+    padding: 12px 40px;
+    background: #1976D2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    min-width: 150px;
+}
+
+.btn-view:hover {
+    background: #1565C0;
+}
+
+.no-results {
+    text-align: center;
+    padding: 50px;
+    color: #999;
+    font-size: 16px;
+}

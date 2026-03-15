@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بحث متقدم - معمل الجمعية الطبية</title>
+    <link rel="stylesheet" href="css/search.css">
+</head>
+<body>
+    <div class="container">
+        <!-- شريط العنوان مع زر الرجوع -->
+        <div class="header-bar">
+            <button type="button" id="backBtn" class="btn-back">🔙 رجوع</button>
+            <h1>🔍 بحث متقدم</h1>
+            <div style="width: 80px;"></div>
+        </div>
+
+        <!-- شريط البحث التنبؤي - ثابت في الأعلى -->
+        <div class="search-section">
+            <input type="text" id="searchInput" placeholder="ابحث باسم المريض أو الرقم الدائم..." autocomplete="off">
+            <button id="searchBtn" class="btn-search">بحث</button>
+            <div id="suggestions" class="suggestions-box"></div>
+        </div>
+
+        <!-- نتائج البحث (تظهر في باقي الصفحة) -->
+        <div id="searchResults" class="search-results">
+            <!-- هنا تظهر بيانات المريض بعد البحث -->
+        </div>
+    </div>
+
+    <script src="scripts/search.js"></script>
+</body>
+</html>

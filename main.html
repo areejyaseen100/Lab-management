@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معمل الجمعية الطبية - الرئيسية</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- الهيدر مع شعار المستخدم وزر الإعدادات -->
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo-circle">🔬</div>
+                <h1>معمل الجمعية الطبية</h1>
+            </div>
+            <div class="user-section">
+                <!-- زر الإعدادات مع القائمة المنسدلة -->
+                <div class="settings-dropdown">
+                    <button id="settingsBtn" class="settings-btn">⚙️</button>
+                    <div id="settingsMenu" class="settings-menu">
+                        <div class="settings-menu-item" onclick="window.location.href='accounts.html'">
+                            <span>👥</span> إدارة الحسابات
+                        </div>
+                        <div class="settings-menu-item" onclick="window.location.href='change_password.html'">
+                            <span>🔑</span> تغيير كلمة المرور
+                        </div>
+                        <div class="settings-menu-item" onclick="window.location.href='manage_tests.html'">
+                            <span>🧪</span> إدارة الفحوصات
+                        </div>
+                    </div>
+                </div>
+                <span class="user-name" id="userName"></span>
+                <button id="logoutBtn" class="logout-btn">تسجيل خروج</button>
+            </div>
+        </div>
+
+        <!-- بطاقة الترحيب المزخرفة -->
+        <div class="welcome-text">
+            <h2 id="welcomeMessage">مرحباً بك</h2>
+            <p id="welcomeSubMessage">نتمنى لك وردية سعيدة 🌸</p>
+        </div>
+
+        <!-- بطاقة إحصائيات سريعة -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon blue">📅</div>
+                <div class="stat-content">
+                    <span class="stat-label">تاريخ اليوم</span>
+                    <span class="stat-value" id="todayDate"></span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon green">👥</div>
+                <div class="stat-content">
+                    <span class="stat-label">مرضى اليوم</span>
+                    <span class="stat-value" id="todayPatients">0</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon orange">⏳</div>
+                <div class="stat-content">
+                    <span class="stat-label">قيد الانتظار</span>
+                    <span class="stat-value" id="pendingTests">0</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon purple">💰</div>
+                <div class="stat-content">
+                    <span class="stat-label">إيرادات اليوم</span>
+                    <span class="stat-value" id="todayRevenue">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم الإجراءات السريعة -->
+        <h2 class="section-title">الإجراءات السريعة</h2>
+        <div class="actions-grid">
+            <div class="action-card" onclick="window.location.href='add_patient.html'">
+                <div class="action-icon">➕</div>
+                <div class="action-content">
+                    <span class="action-label">إضافة مريض</span>
+                </div>
+            </div>
+            <div class="action-card" onclick="window.location.href='results.html'">
+                <div class="action-icon">📋</div>
+                <div class="action-content">
+                    <span class="action-label">نتائج الفحوصات</span>
+                </div>
+            </div>
+            <div class="action-card" onclick="window.location.href='search.html'">
+                <div class="action-icon">🔍</div>
+                <div class="action-content">
+                    <span class="action-label">بحث متقدم</span>
+                </div>
+            </div>
+            <div class="action-card" onclick="window.location.href='reports.html'">
+                <div class="action-icon">📊</div>
+                <div class="action-content">
+                    <span class="action-label">التقارير</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- آخر المرضى المسجلين -->
+        <h2 class="section-title">آخر المرضى</h2>
+        <div class="recent-patients" id="recentPatients">
+            <!-- هنا تظهر قائمة آخر المرضى -->
+        </div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>

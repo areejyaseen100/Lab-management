@@ -1,0 +1,486 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0B3B5C, #1B6B8F);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    width: 100%;
+    max-width: 1200px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== شريط العنوان ===== */
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e0e0e0;
+    flex-shrink: 0;
+}
+
+.header-bar h1 {
+    color: #1976D2;
+    font-size: 24px;
+    margin: 0;
+}
+
+.btn-back {
+    padding: 8px 16px;
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 80px;
+}
+
+.btn-back:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+/* ===== معلومات المريض ===== */
+.patient-info {
+    background: #e3f2fd;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border-right: 4px solid #1976D2;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+
+.patient-info span {
+    color: #0d3c61;
+}
+
+.patient-info strong {
+    color: #1976D2;
+    margin-left: 5px;
+}
+
+/* ===== المحتوى الرئيسي ===== */
+.main-content {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* ===== الجزء الأيسر ===== */
+.left-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ===== شريط البحث ===== */
+.search-section {
+    margin-bottom: 15px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.search-section label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.search-section input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.search-section input:focus {
+    outline: none;
+    border-color: #1976D2;
+}
+
+.suggestions-box {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.suggestions-box.show {
+    display: block;
+}
+
+.suggestion-item {
+    padding: 10px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.2s;
+}
+
+.suggestion-item:hover {
+    background: #f5f5f5;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-name {
+    font-weight: 500;
+    color: #1976D2;
+    font-size: 13px;
+}
+
+.suggestion-price {
+    font-size: 12px;
+    color: #2e7d32;
+    margin-top: 2px;
+}
+
+/* ===== أسماء الأقسام ===== */
+.section-title {
+    color: #1976D2;
+    margin-bottom: 10px;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.categories-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+    flex-shrink: 0;
+}
+
+.category-btn {
+    padding: 8px 16px;
+    background: #f0f0f0;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.category-btn:hover {
+    background: #1976D2;
+    color: white;
+    border-color: #1976D2;
+}
+
+.category-btn.active {
+    background: #1976D2;
+    color: white;
+    border-color: #1976D2;
+}
+
+/* ===== فحوصات القسم ===== */
+.category-tests-section {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+}
+
+.category-tests-header {
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #1976D2;
+    flex-shrink: 0;
+}
+
+.category-tests-header h3 {
+    color: #1976D2;
+    font-size: 18px;
+    margin: 0;
+}
+
+.category-tests-list {
+    overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-content: flex-start;
+    padding: 5px;
+}
+
+/* ===== أزرار الفحوصات (صغيرة ومتساوية) ===== */
+.test-btn {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 8px 12px;
+    min-width: 100px;
+    max-width: 150px;
+    flex: 0 1 auto;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 12px;
+}
+
+.test-btn:hover {
+    border-color: #1976D2;
+    background: #f5f5f5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.test-btn.selected {
+    background: #e3f2fd;
+    border-color: #1976D2;
+    border-width: 2px;
+    box-shadow: 0 2px 4px rgba(25, 118, 210, 0.2);
+}
+
+.test-btn-name {
+    font-weight: 600;
+    color: #333;
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+}
+
+.test-btn-price {
+    color: #2e7d32;
+    font-weight: 600;
+    font-size: 11px;
+    background: #e8f5e9;
+    padding: 2px 6px;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.test-btn.selected .test-btn-price {
+    background: #1976D2;
+    color: white;
+}
+
+/* ===== الفحوصات المختارة (الجزء الأيمن) ===== */
+.right-section {
+    width: 300px;
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 2px solid #1976D2;
+}
+
+.selected-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #1976D2;
+    flex-shrink: 0;
+}
+
+.selected-header h2 {
+    color: #1976D2;
+    font-size: 18px;
+    margin: 0;
+}
+
+.btn-clear-small {
+    width: 32px;
+    height: 32px;
+    background: #f44336;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-clear-small:hover {
+    background: #d32f2f;
+}
+
+.selected-list {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    padding-left: 5px;
+}
+
+.selected-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: white;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.selected-item-info {
+    flex: 1;
+}
+
+.selected-item-name {
+    font-weight: 500;
+    color: #333;
+    font-size: 13px;
+}
+
+.selected-item-price {
+    color: #2e7d32;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+.remove-test-btn {
+    width: 24px;
+    height: 24px;
+    background: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+}
+
+.remove-test-btn:hover {
+    background: #d32f2f;
+}
+
+.total-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 2px solid #1976D2;
+    flex-shrink: 0;
+}
+
+.total-section span:first-child {
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+.total-amount {
+    color: #2e7d32;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.btn-confirm {
+    width: 100%;
+    padding: 12px;
+    background: #1976D2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    flex-shrink: 0;
+}
+
+.btn-confirm:hover {
+    background: #1565C0;
+}
+
+/* ===== تحسينات للشاشات المتوسطة ===== */
+@media (max-width: 900px) {
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .right-section {
+        width: 100%;
+        margin-top: 20px;
+    }
+    
+    .container {
+        height: auto;
+        max-height: 95vh;
+    }
+}
+
+@media (max-width: 600px) {
+    .test-btn {
+        min-width: 80px;
+        max-width: 120px;
+    }
+    
+    .test-btn-name {
+        max-width: 90px;
+    }
+}
